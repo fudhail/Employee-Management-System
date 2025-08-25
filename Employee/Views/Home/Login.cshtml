@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<h2>Login</h2>
+
+<div id="loginResult"></div>
+
+<form id="loginForm">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required />
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required />
+    </div>
+
+    <button type="button" class="btn btn-primary" onclick="login()">Login</button>
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+        function login() {
+            var frm = $('#loginForm')
+            var frmdata = JSON.stringify(frm.serializeArray());
+            console.log(frmdata);
+
+            $.ajax({
+                type: "POST",
+                url: "/Home/CheckLogin",
+                dataType: "JSON",
+                contentType: "JSON",
+                data: JSON.stringify({ sdata: frmdata }),
+                success: function (response) {
+                    if (response == "Login successful.") {
+                        alert(response);
+                        window.location.href = "/Employee/Index";
+                    }
+                    else {
+                        alert(response);
+                        //window.location.href = "/newlogin/error";
+                    }
+                },
+                error: function (xhr, status, error) { }
+            });
+        }
+
+</script>

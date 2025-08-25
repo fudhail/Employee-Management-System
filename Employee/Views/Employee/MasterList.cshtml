@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "DeptList";
+    var types = ViewBag.MasterType;
+}
+
+@if(types == "1")
+            {
+
+<h2>Departments</h2>
+            }
+else { 
+<h2>Designations</h2>
+
+}
+
+
+<hr />
+<button class="btn btn-primary rounded-pill" style="border-radius: 40px;" onclick="openAdddept()">
+    <i class="bi bi-plus"></i> Add dept
+</button>
+
+<hr />
+<table class="table table-striped table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var dept in Model)
+        {
+            <tr>
+                <th scope="row">@dept.MID</th>
+                <td>@dept.MNAME</td>
+               
+                <td>
+                    <a class="btn btn-sm btn-warning rounded-pill" @*href="/dept/Edit/@dept.S_UID"*@ onclick="Editdept(@dept.MID);">
+                        <i class="bi bi-pencil-square"></i> Edit
+                    </a>
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+<form id="frmdept" action="\dept\PrintReceipt" method="post" name="frmdept" target="_blank">
+    <input id="hdid" name="hdid" type="hidden" value="" />
+</form>
+
+
+<script>
+    function openAdddept() {
+        window.location.href = '/Employee/AddMaster?type=' + @types;
+    }
+    function Editdept(id) {
+        alert(id);
+        window.location.href = '/Employee/AddMaster?id=' + id +'&type=' + @types ;
+    }
+
+
+
+</script>

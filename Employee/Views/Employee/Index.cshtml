@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Employees";
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+<h2>Employees</h2>
+
+
+<hr />
+<button class="btn btn-primary rounded-pill" style="border-radius: 40px;" onclick="openAddemployee()">
+    <i class="bi bi-plus"></i> Add employee
+</button>
+<button class="btn btn-primary rounded-pill" style="border-radius: 40px;" onclick="PrintReport()">
+    <i class="bi bi-plus"></i> Print
+</button>
+<button class="btn btn-primary rounded-pill" style="border-radius: 40px;" onclick="window.open('/Employee/PrintReport?type=1','_blank')">
+<i class="bi bi-plus"></i>Print Department wise
+</button>
+<button class="btn btn-primary rounded-pill" style="border-radius: 40px;" onclick="window.open('/Employee/PrintReport?type=2','_blank')">
+    <i class="bi bi-plus"></i>Print Designation wise
+</button>
+<hr />
+<table class="table table-striped table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">EID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Join Date</th>
+            <th scope="col">DOB</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Dept</th>
+            <th scope="col">Designation</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Leaves Remaining</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <th scope="row">@employee.Eid</th>
+                <td>@employee.name</td>
+                <td>@employee.age</td>
+                <td>@employee.joindate</td>
+                <td>@employee.dob</td>
+                <td>@employee.salary</td>
+                <td>@employee.dept</td>
+                <td>@employee.desig</td>
+                <td>@employee.sex</td>
+                <td>@employee.phno</td>
+                <td>@employee.NoOfLeaves</td>
+                <td>
+                    <a class="btn btn-sm btn-warning rounded-pill" @*href="/employee/Edit/@employee.S_UID"*@ onclick="Editemployee(@employee.Eid);">
+                        <i class="bi bi-pencil-square"></i> Edit
+                    </a>
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+<form id="frmemployee" action="\Employee\PrintReport" method="post" name="frmemployee" target="_blank">
+    <input id="hdid" name="hdid" type="hidden" value="" />
+    <input id="type" name="type" type="hidden" value="" />
+</form>
+
+
+<script>
+    function openAddemployee() {
+        window.location.href = '/Employee/AddEmployee';
+    }
+    function Editemployee(id) {
+        alert(id);
+        window.location.href = '/Employee/AddEmployee?id=' + id;
+    }
+    function PrintReport(id,type) {
+        $("#hdid").val(id);
+        $("#frmemployee").submit();
+    }
+</script>

@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "AddDept";
+    var type = ViewBag.MasterType;
+}
+
+<h2>AddDept</h2>
+
+
+<div class="card p-4">
+    <div class="panel pa">
+        <div class="panel-heading text-center">
+            <h2 class="panel-title" style="font-weight: 700; font-size: 28px; letter-spacing: 1px;">
+                Add Employee Details
+            </h2>
+        </div>
+        <form id="frmEmployee" method="POST">
+            <!-- Employee ID -->
+            <div class="form-group">
+                <label for="eid" class="form-label">Dept ID</label>
+                <input type="number" class="form-control" id="eid" name="MID" value="@(Model == null ? "" : Model.MID)">
+            </div>
+
+            <!-- Name -->
+            <div class="form-group">
+                <label for="name" class="form-label">Department Name</label>
+                <input type="text" class="form-control" id="name" name="MName" required value="@(Model == null ? "" : Model.MNAME)">
+            </div>
+            <div class="form-group" style="display:none">
+                <label for="type" class="form-label" ></label>
+                <input type="text" class="form-control" id="name" name="type" required value="@type">
+            </div>
+            
+
+            <hr />
+            <button type="button" onclick="saveEmployee()" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script>
+    function saveEmployee() {
+
+    var frm = $('#frmEmployee')
+    var frmdata = JSON.stringify(frm.serializeArray());
+    console.log(frmdata);
+
+    $.ajax({
+        type: "POST",
+        url: "/Employee/SaveDept",
+        dataType: "JSON",
+        contentType: "JSON",
+        data: JSON.stringify({ sdata: frmdata }),
+        success: function (response) {
+            if (response == "success") {
+                alert(response);
+                window.location.href = "/Employee/DeptList";
+            }
+            else {
+                alert(response);
+                //window.location.href = "/newlogin/error";
+            }
+        },
+        error: function (xhr, status, error) { }
+    });
+        }
+    </script>

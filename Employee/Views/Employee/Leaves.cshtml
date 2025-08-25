@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Leaves";
+}
+
+<h2>Leave Records</h2>
+
+<hr />
+<button class="btn btn-primary rounded-pill" onclick="openAddLeave()">
+    <i class="bi bi-plus"></i> Add Leave
+</button>
+<button class="btn btn-primary rounded-pill" onclick="PrintLeaveReport()">
+    <i class="bi bi-printer"></i> Print
+</button>
+<hr />
+
+<table class="table table-striped table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Leave ID</th>
+            <th scope="col">Employee Name</th>
+            <th scope="col">Leave Type</th>
+            <th scope="col">From Date</th>
+            <th scope="col">To Date</th>
+            <th scope="col">Days</th>
+            <th scope="col">Reason</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var leave in Model)
+        {
+            <tr>
+                <td>@leave.Lid</td>
+                <td>@leave.EmployeeName</td>
+                <td>@leave.LeaveType</td>
+                <td>@leave.FromDate</td>
+                <td>@leave.ToDate</td>
+                <td>@leave.Days</td>
+                <td>@leave.Reason</td>
+                <td>
+                    <a class="btn btn-sm btn-warning rounded-pill" onclick="EditLeave(@leave.Lid);">
+                        <i class="bi bi-pencil-square"></i> Edit
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form id="frmLeave" action="/Leave/PrintReport" method="post" target="_blank">
+    <input id="hdid" name="hdid" type="hidden" />
+</form>
+
+<script>
+    function openAddLeave() {
+        window.location.href = '/Employee/AddLeave';
+    }
+    function EditLeave(id) {
+        window.location.href = '/Employee/AddLeave?id=' + id;
+    }
+    function PrintLeaveReport(id) {
+        $("#hdid").val(id);
+        $("#frmLeave").submit();
+    }
+</script>

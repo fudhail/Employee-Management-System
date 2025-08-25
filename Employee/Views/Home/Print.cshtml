@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Print";
+}
+
+<div class="jumbotron">
+    <h1>Print Report</h1>
+</div>
+<hr />
+
+<div class="form-group">
+    <label for="printOption">Select Report Type:</label>
+    <select id="printOption" class="form-control" style="max-width: 300px;">
+        <option value="3">Employee Wise</option>
+        <option value="4">Full Report</option>
+    </select>
+</div>
+
+<br />
+
+<button class="btn btn-primary rounded-pill" style="border-radius: 40px;" onclick="printReport()">
+    <i class="bi bi-printer"></i> Print Leave Record
+</button>
+
+<script>
+    function printReport() {
+        var type = document.getElementById('printOption').value;
+        window.open('/Employee/PrintReport?type=' + type, '_blank');
+    }
+</script>
+<hr />
