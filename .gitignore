@@ -1,47 +1,55 @@
-# Visual Studio settings
+# Visual Studio user-specific files
 .vs/
 *.user
 *.suo
+*.userosscache
+*.sln.docstates
 
-# Build output
+# Build results
 bin/
 obj/
-Debug/
-Release/
 [Bb]uild/
 [Ll]og/
 [Tt]emp/
-
-# Test results
 TestResults/
 
-# NuGet packages (restored at build)
+# NuGet packages (will be restored)
 packages/
 *.nupkg
+project.lock.json
+project.fragment.lock.json
 
 # IIS Express
-.vs/
 .vscode/
-*.vspscc
-*.vssscc
+.vscode/*
+.ionide/
+.vsconfig
 
-# Database files (if generated at runtime)
+# Database files (local only)
 App_Data/*.mdf
 App_Data/*.ldf
+*.dbmdl
 
-# Publish profiles
+# Publish files
+publish/
 *.pubxml
 *.publishproj
 
-# Other temp/cache
-*.cache
+# Others
+*.dll
+*.exe
 *.pdb
-*.dbmdl
+*.cache
+*.log
 *.bak
 *.tmp
-*.log
+*.orig
+*.rsuser
 
-# Resharper / Rider
+# ReSharper / Rider
 _ReSharper*/
 *.DotSettings.user
 .idea/
+
+# DotCover
+*.dotCover
