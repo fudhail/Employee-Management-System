@@ -91,7 +91,7 @@ Reports can be viewed via the built-in **Crystal Report Viewer**.
 ## 🤝 Contributing
 
 Contributions are welcome! Please fork the repo and create a pull
-request
+request.
 
 -----------------------------------------------------------------------
 
