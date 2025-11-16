@@ -82,17 +82,11 @@ Reports can be viewed via the built-in **Crystal Report Viewer**.
 
 ------------------------------------------------------------------------
 
-## 📷 Screenshots *(optional)*
-
-*Add screenshots of your app UI here once available.*
-
-------------------------------------------------------------------------
 
 ## 🤝 Contributing
 
 Contributions are welcome! Please fork the repo and create a pull
-request.
-
+request
 -----------------------------------------------------------------------
 
 ## 📜 License
